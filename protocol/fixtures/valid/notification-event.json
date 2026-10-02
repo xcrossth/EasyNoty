@@ -1,0 +1,54 @@
+{
+  "protocol_version": 1,
+  "message_id": "20000000-0000-4000-8000-000000000003",
+  "message_type": "notification_event",
+  "device_id": "22222222-2222-4222-8222-222222222222",
+  "sent_at_utc": "2026-07-05T06:10:01Z",
+  "session_id": "55555555-5555-4555-8555-555555555555",
+  "payload": {
+    "event_id": "66666666-6666-4666-8666-666666666666",
+    "notification_instance_id": "77777777-7777-4777-8777-777777777777",
+    "revision_index": 0,
+    "android_notification_key": "0|com.example.chat|42|null|10001",
+    "package_name": "com.example.chat",
+    "app_name": "Example Chat",
+    "posted_at_utc": "2026-07-05T06:10:00Z",
+    "captured_at_utc": "2026-07-05T06:10:00.123Z",
+    "raw_snapshot_schema_version": 1,
+    "raw_snapshot_byte_size": 48,
+    "raw_snapshot_sha256": "sha256:2fea4d651e74ee5f5dbd36e78786cec68b8d101e2b3fc113f18d2041d8c620cf",
+    "raw_snapshot": { "android.title": "Alice", "android.text": "Hello" },
+    "parsed_result": {
+      "parser_name": "generic_android",
+      "parser_version": 1,
+      "title": "Alice",
+      "body": "Hello",
+      "sender_name": "Alice",
+      "conversation_title": null,
+      "preview_text": "Hello",
+      "confidence": 0.8
+    },
+    "assets": [{
+      "role": "app_icon",
+      "hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "mime": "image/png",
+      "original_size": 1024,
+      "width": 48,
+      "height": 48,
+      "source_kind": "icon_resource",
+      "originality_level": "lossless_snapshot_from_bitmap"
+    }],
+    "style": "messaging",
+    "is_ongoing": false,
+    "is_group_summary": false,
+    "group_key": "chat:alice",
+    "sort_key": null,
+    "minimal_capture_error": null
+  },
+  "authentication": {
+    "algorithm": "hmac-sha256",
+    "key_id": "44444444-4444-4444-8444-444444444444",
+    "payload_sha256": "sha256:b64021b4b215508b20aafed4ff2f4b7be4a56b8f13fb4f5ee8a266a22b3eddc5",
+    "signature": "31b52092a9243e32e061091518e627094ffcf4dcae6e1298e327d9e9d29b7541"
+  }
+}

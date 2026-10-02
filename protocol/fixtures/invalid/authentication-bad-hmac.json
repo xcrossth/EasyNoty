@@ -1,0 +1,15 @@
+{
+  "protocol_version": 1,
+  "message_id": "20000000-0000-4000-8000-000000000016",
+  "message_type": "ping",
+  "device_id": "22222222-2222-4222-8222-222222222222",
+  "sent_at_utc": "2026-07-05T06:20:00Z",
+  "session_id": "55555555-5555-4555-8555-555555555555",
+  "payload": { "nonce": "abcdefgh" },
+  "authentication": {
+    "algorithm": "hmac-sha256",
+    "key_id": "44444444-4444-4444-8444-444444444444",
+    "payload_sha256": "sha256:88ed2b4a4d4114c24d6ea3f34f1392fe8ec293f2e2f5b18ddd25358b9f82669f",
+    "signature": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

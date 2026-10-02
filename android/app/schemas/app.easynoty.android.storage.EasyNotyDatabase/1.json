@@ -1,0 +1,626 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "ee30501d25831824c1fb2635a0917b4d",
+    "entities": [
+      {
+        "tableName": "paired_windows_devices",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pcDeviceId` TEXT NOT NULL, `pcName` TEXT NOT NULL, `host` TEXT NOT NULL, `port` INTEGER NOT NULL, `certificateSha256` TEXT NOT NULL, `keyId` TEXT NOT NULL, `secretAlias` TEXT NOT NULL, `pairedAtUtc` INTEGER NOT NULL, `lastSeenAtUtc` INTEGER, `isPaused` INTEGER NOT NULL, `isRevoked` INTEGER NOT NULL, `backfillSinceUtc` INTEGER, PRIMARY KEY(`pcDeviceId`))",
+        "fields": [
+          {
+            "fieldPath": "pcDeviceId",
+            "columnName": "pcDeviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pcName",
+            "columnName": "pcName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "host",
+            "columnName": "host",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "port",
+            "columnName": "port",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "certificateSha256",
+            "columnName": "certificateSha256",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyId",
+            "columnName": "keyId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secretAlias",
+            "columnName": "secretAlias",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pairedAtUtc",
+            "columnName": "pairedAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSeenAtUtc",
+            "columnName": "lastSeenAtUtc",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isPaused",
+            "columnName": "isPaused",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isRevoked",
+            "columnName": "isRevoked",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "backfillSinceUtc",
+            "columnName": "backfillSinceUtc",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "pcDeviceId"
+          ]
+        }
+      },
+      {
+        "tableName": "app_allowlist",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packageName` TEXT NOT NULL, `appName` TEXT NOT NULL, `isAllowed` INTEGER NOT NULL, `lastSeenAtUtc` INTEGER, `iconAssetHash` TEXT, PRIMARY KEY(`packageName`))",
+        "fields": [
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appName",
+            "columnName": "appName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isAllowed",
+            "columnName": "isAllowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSeenAtUtc",
+            "columnName": "lastSeenAtUtc",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "iconAssetHash",
+            "columnName": "iconAssetHash",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packageName"
+          ]
+        }
+      },
+      {
+        "tableName": "notification_events",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`eventId` TEXT NOT NULL, `notificationInstanceId` TEXT NOT NULL, `revisionIndex` INTEGER NOT NULL, `notificationKey` TEXT NOT NULL, `packageName` TEXT NOT NULL, `appName` TEXT NOT NULL, `postedAtUtc` INTEGER NOT NULL, `capturedAtUtc` INTEGER NOT NULL, `rawSnapshotJson` TEXT NOT NULL, `parsedResultJson` TEXT NOT NULL, `rawByteSize` INTEGER NOT NULL, `rawSha256` TEXT NOT NULL, `groupKey` TEXT, `isGroupSummary` INTEGER NOT NULL, `isOngoing` INTEGER NOT NULL, `style` TEXT NOT NULL, `sortKey` TEXT, `isActive` INTEGER NOT NULL, `captureError` TEXT, `createdAtUtc` INTEGER NOT NULL, PRIMARY KEY(`eventId`))",
+        "fields": [
+          {
+            "fieldPath": "eventId",
+            "columnName": "eventId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notificationInstanceId",
+            "columnName": "notificationInstanceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revisionIndex",
+            "columnName": "revisionIndex",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notificationKey",
+            "columnName": "notificationKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appName",
+            "columnName": "appName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "postedAtUtc",
+            "columnName": "postedAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "capturedAtUtc",
+            "columnName": "capturedAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawSnapshotJson",
+            "columnName": "rawSnapshotJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parsedResultJson",
+            "columnName": "parsedResultJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawByteSize",
+            "columnName": "rawByteSize",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawSha256",
+            "columnName": "rawSha256",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "groupKey",
+            "columnName": "groupKey",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isGroupSummary",
+            "columnName": "isGroupSummary",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isOngoing",
+            "columnName": "isOngoing",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "style",
+            "columnName": "style",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sortKey",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "captureError",
+            "columnName": "captureError",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAtUtc",
+            "columnName": "createdAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "eventId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_notification_events_notificationKey",
+            "unique": false,
+            "columnNames": [
+              "notificationKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_notification_events_notificationKey` ON `${TABLE_NAME}` (`notificationKey`)"
+          },
+          {
+            "name": "index_notification_events_notificationInstanceId_revisionIndex",
+            "unique": true,
+            "columnNames": [
+              "notificationInstanceId",
+              "revisionIndex"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_notification_events_notificationInstanceId_revisionIndex` ON `${TABLE_NAME}` (`notificationInstanceId`, `revisionIndex`)"
+          }
+        ]
+      },
+      {
+        "tableName": "notification_event_delivery",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`eventId` TEXT NOT NULL, `pcDeviceId` TEXT NOT NULL, `status` TEXT NOT NULL, `retryCount` INTEGER NOT NULL, `nextAttemptAtUtc` INTEGER NOT NULL, `lastAttemptAtUtc` INTEGER, `lastError` TEXT, `ackedAtUtc` INTEGER, PRIMARY KEY(`eventId`, `pcDeviceId`), FOREIGN KEY(`eventId`) REFERENCES `notification_events`(`eventId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`pcDeviceId`) REFERENCES `paired_windows_devices`(`pcDeviceId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "eventId",
+            "columnName": "eventId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pcDeviceId",
+            "columnName": "pcDeviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "retryCount",
+            "columnName": "retryCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nextAttemptAtUtc",
+            "columnName": "nextAttemptAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastAttemptAtUtc",
+            "columnName": "lastAttemptAtUtc",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastError",
+            "columnName": "lastError",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "ackedAtUtc",
+            "columnName": "ackedAtUtc",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "eventId",
+            "pcDeviceId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_notification_event_delivery_pcDeviceId",
+            "unique": false,
+            "columnNames": [
+              "pcDeviceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_notification_event_delivery_pcDeviceId` ON `${TABLE_NAME}` (`pcDeviceId`)"
+          },
+          {
+            "name": "index_notification_event_delivery_status",
+            "unique": false,
+            "columnNames": [
+              "status"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_notification_event_delivery_status` ON `${TABLE_NAME}` (`status`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "notification_events",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "eventId"
+            ],
+            "referencedColumns": [
+              "eventId"
+            ]
+          },
+          {
+            "table": "paired_windows_devices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pcDeviceId"
+            ],
+            "referencedColumns": [
+              "pcDeviceId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "assets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hash` TEXT NOT NULL, `mime` TEXT NOT NULL, `byteSize` INTEGER NOT NULL, `width` INTEGER, `height` INTEGER, `sourceKind` TEXT NOT NULL, `originalityLevel` TEXT NOT NULL, `localPath` TEXT NOT NULL, `createdAtUtc` INTEGER NOT NULL, `lastSeenAtUtc` INTEGER NOT NULL, PRIMARY KEY(`hash`))",
+        "fields": [
+          {
+            "fieldPath": "hash",
+            "columnName": "hash",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mime",
+            "columnName": "mime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "byteSize",
+            "columnName": "byteSize",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "width",
+            "columnName": "width",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "sourceKind",
+            "columnName": "sourceKind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originalityLevel",
+            "columnName": "originalityLevel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localPath",
+            "columnName": "localPath",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAtUtc",
+            "columnName": "createdAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSeenAtUtc",
+            "columnName": "lastSeenAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "hash"
+          ]
+        }
+      },
+      {
+        "tableName": "notification_assets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`eventId` TEXT NOT NULL, `assetHash` TEXT NOT NULL, `role` TEXT NOT NULL, PRIMARY KEY(`eventId`, `assetHash`, `role`), FOREIGN KEY(`eventId`) REFERENCES `notification_events`(`eventId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`assetHash`) REFERENCES `assets`(`hash`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "eventId",
+            "columnName": "eventId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "assetHash",
+            "columnName": "assetHash",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "role",
+            "columnName": "role",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "eventId",
+            "assetHash",
+            "role"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_notification_assets_assetHash",
+            "unique": false,
+            "columnNames": [
+              "assetHash"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_notification_assets_assetHash` ON `${TABLE_NAME}` (`assetHash`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "notification_events",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "eventId"
+            ],
+            "referencedColumns": [
+              "eventId"
+            ]
+          },
+          {
+            "table": "assets",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "assetHash"
+            ],
+            "referencedColumns": [
+              "hash"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "asset_delivery",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`assetHash` TEXT NOT NULL, `pcDeviceId` TEXT NOT NULL, `status` TEXT NOT NULL, `retryCount` INTEGER NOT NULL, `nextAttemptAtUtc` INTEGER NOT NULL, `lastAttemptAtUtc` INTEGER, `lastError` TEXT, `ackedAtUtc` INTEGER, PRIMARY KEY(`assetHash`, `pcDeviceId`), FOREIGN KEY(`assetHash`) REFERENCES `assets`(`hash`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`pcDeviceId`) REFERENCES `paired_windows_devices`(`pcDeviceId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "assetHash",
+            "columnName": "assetHash",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pcDeviceId",
+            "columnName": "pcDeviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "retryCount",
+            "columnName": "retryCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nextAttemptAtUtc",
+            "columnName": "nextAttemptAtUtc",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastAttemptAtUtc",
+            "columnName": "lastAttemptAtUtc",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastError",
+            "columnName": "lastError",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "ackedAtUtc",
+            "columnName": "ackedAtUtc",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "assetHash",
+            "pcDeviceId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_asset_delivery_pcDeviceId",
+            "unique": false,
+            "columnNames": [
+              "pcDeviceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_asset_delivery_pcDeviceId` ON `${TABLE_NAME}` (`pcDeviceId`)"
+          },
+          {
+            "name": "index_asset_delivery_status",
+            "unique": false,
+            "columnNames": [
+              "status"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_asset_delivery_status` ON `${TABLE_NAME}` (`status`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "assets",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "assetHash"
+            ],
+            "referencedColumns": [
+              "hash"
+            ]
+          },
+          {
+            "table": "paired_windows_devices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pcDeviceId"
+            ],
+            "referencedColumns": [
+              "pcDeviceId"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ee30501d25831824c1fb2635a0917b4d')"
+    ]
+  }
+}

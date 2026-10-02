@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="src/EasyNoty.Core/EasyNoty.Core.csproj" />
+  <Project Path="src/EasyNoty.Infrastructure/EasyNoty.Infrastructure.csproj" />
+  <Project Path="src/EasyNoty.Desktop/EasyNoty.Desktop.csproj" />
+  <Project Path="src/EasyNoty.MockAndroid/EasyNoty.MockAndroid.csproj" />
+  <Project Path="src/EasyNoty.Setup/EasyNoty.Setup.csproj" />
+  <Project Path="tests/EasyNoty.Tests/EasyNoty.Tests.csproj" />
+</Solution>

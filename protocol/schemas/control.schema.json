@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://easynoty.app/protocol/v1/schemas/control.schema.json",
+  "title": "EasyNoty Protocol v1 keepalive and error payloads",
+  "$defs": {
+    "keepalive": {
+      "type": "object", "additionalProperties": false,
+      "required": ["nonce"],
+      "properties": { "nonce": { "type": "string", "pattern": "^[A-Za-z0-9_-]{8,86}$" } }
+    },
+    "error": {
+      "type": "object", "additionalProperties": false,
+      "required": ["code", "message", "retryable", "related_message_id"],
+      "properties": {
+        "code": { "enum": ["invalid_envelope", "invalid_payload", "unsupported_version", "authentication_failed", "replay_detected", "device_revoked", "device_paused", "pairing_expired", "hash_mismatch", "size_limit_exceeded", "transfer_incomplete", "persistence_failed", "internal_error"] },
+        "message": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "retryable": { "type": "boolean" },
+        "related_message_id": { "oneOf": [{ "$ref": "common.schema.json#/$defs/uuid" }, { "type": "null" }] },
+        "details": { "type": "object" }
+      }
+    }
+  }
+}

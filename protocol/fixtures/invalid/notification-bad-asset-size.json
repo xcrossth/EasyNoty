@@ -1,0 +1,28 @@
+{
+  "protocol_version": 1,
+  "message_id": "20000000-0000-4000-8000-000000000012",
+  "message_type": "notification_event",
+  "device_id": "22222222-2222-4222-8222-222222222222",
+  "sent_at_utc": "2026-07-05T06:10:01Z",
+  "session_id": "55555555-5555-4555-8555-555555555555",
+  "payload": {
+    "event_id": "66666666-6666-4666-8666-666666666666",
+    "notification_instance_id": "77777777-7777-4777-8777-777777777777",
+    "revision_index": 0,
+    "android_notification_key": "key",
+    "package_name": "com.example.chat",
+    "app_name": "Chat",
+    "posted_at_utc": "2026-07-05T06:10:00Z",
+    "captured_at_utc": "2026-07-05T06:10:00Z",
+    "raw_snapshot_schema_version": 1,
+    "raw_snapshot_byte_size": 2,
+    "raw_snapshot_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "raw_snapshot": {},
+    "parsed_result": { "parser_name": "generic_android", "parser_version": 1, "title": null, "body": null, "sender_name": null, "conversation_title": null, "confidence": 0 },
+    "assets": [{ "role": "app_icon", "hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "mime": "image/png", "original_size": 26214401, "source_kind": "icon_bitmap", "originality_level": "lossless_snapshot_from_bitmap" }],
+    "style": "generic",
+    "is_ongoing": false,
+    "is_group_summary": false
+  },
+  "authentication": null
+}

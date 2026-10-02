@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://easynoty.app/protocol/v1/schemas/notification.schema.json",
+  "title": "EasyNoty Protocol v1 notification event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "notification_instance_id", "revision_index", "android_notification_key", "package_name", "app_name", "posted_at_utc", "captured_at_utc", "raw_snapshot_schema_version", "raw_snapshot_byte_size", "raw_snapshot_sha256", "raw_snapshot", "parsed_result", "assets", "style", "is_ongoing", "is_group_summary"],
+  "properties": {
+    "event_id": { "$ref": "common.schema.json#/$defs/uuid" },
+    "notification_instance_id": { "$ref": "common.schema.json#/$defs/uuid" },
+    "revision_index": { "type": "integer", "minimum": 0 },
+    "android_notification_key": { "type": "string", "minLength": 1, "maxLength": 4096 },
+    "package_name": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z][A-Za-z0-9_]*)+$", "maxLength": 255 },
+    "app_name": { "type": "string", "minLength": 1, "maxLength": 512 },
+    "posted_at_utc": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "captured_at_utc": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "raw_snapshot_schema_version": { "type": "integer", "minimum": 1 },
+    "raw_snapshot_byte_size": { "type": "integer", "minimum": 2 },
+    "raw_snapshot_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "raw_snapshot": { "type": "object" },
+    "parsed_result": { "$ref": "common.schema.json#/$defs/parsedResult" },
+    "assets": { "type": "array", "maxItems": 64, "items": { "$ref": "common.schema.json#/$defs/assetManifest" } },
+    "style": { "enum": ["generic", "big_text", "big_picture", "inbox", "messaging", "media", "progress", "service", "unknown"] },
+    "is_ongoing": { "type": "boolean" },
+    "is_group_summary": { "type": "boolean" },
+    "group_key": { "type": ["string", "null"], "maxLength": 4096 },
+    "sort_key": { "type": ["string", "null"], "maxLength": 4096 },
+    "minimal_capture_error": { "type": ["string", "null"], "maxLength": 4096 }
+  }
+}

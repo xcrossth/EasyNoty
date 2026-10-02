@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://easynoty.app/protocol/v1/schemas/pairing.schema.json",
+  "title": "EasyNoty Protocol v1 pairing contracts",
+  "$defs": {
+    "qr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol_version", "pc_device_id", "pc_name", "endpoints", "certificate_sha256", "pairing_token", "expires_at_utc"],
+      "properties": {
+        "protocol_version": { "const": 1 },
+        "pc_device_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "pc_name": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "endpoints": {
+          "type": "array", "minItems": 1, "maxItems": 8,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["host", "port"],
+            "properties": {
+              "host": { "type": "string", "minLength": 1, "maxLength": 255 },
+              "port": { "type": "integer", "minimum": 1, "maximum": 65535 }
+            }
+          }
+        },
+        "certificate_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "pairing_token": { "type": "string", "pattern": "^[A-Za-z0-9_-]{32,128}$" },
+        "expires_at_utc": { "$ref": "common.schema.json#/$defs/utcTimestamp" }
+      }
+    },
+    "request": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pairing_token", "android_device_id", "android_name", "client_nonce", "capabilities"],
+      "properties": {
+        "pairing_token": { "type": "string", "pattern": "^[A-Za-z0-9_-]{32,128}$" },
+        "android_device_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "android_name": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "client_nonce": { "type": "string", "pattern": "^[A-Za-z0-9_-]{22,86}$" },
+        "capabilities": { "type": "array", "uniqueItems": true, "items": { "enum": ["zstd", "zlib", "event_chunking", "asset_chunking"] } }
+      }
+    },
+    "accept": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pc_device_id", "pc_name", "key_id", "pairing_secret", "verification_code", "server_nonce", "paired_at_utc"],
+      "properties": {
+        "pc_device_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "pc_name": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "key_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "pairing_secret": { "type": "string", "pattern": "^[A-Za-z0-9_-]{43}$" },
+        "verification_code": { "type": "string", "pattern": "^[0-9]{6}$" },
+        "server_nonce": { "type": "string", "pattern": "^[A-Za-z0-9_-]{22,86}$" },
+        "paired_at_utc": { "$ref": "common.schema.json#/$defs/utcTimestamp" }
+      }
+    },
+    "reject": {
+      "type": "object", "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": { "enum": ["expired_token", "invalid_token", "version_mismatch", "user_rejected", "pairing_unavailable"] },
+        "message": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "retryable": { "type": "boolean" }
+      }
+    }
+  }
+}

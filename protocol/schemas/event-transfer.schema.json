@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://easynoty.app/protocol/v1/schemas/event-transfer.schema.json",
+  "title": "EasyNoty Protocol v1 large event transfer payloads",
+  "$defs": {
+    "start": {
+      "type": "object", "additionalProperties": false,
+      "required": ["transfer_id", "event_id", "content_type", "content_encoding", "canonical_size", "encoded_size", "canonical_sha256", "chunk_size", "chunk_count"],
+      "properties": {
+        "transfer_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "event_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "content_type": { "const": "application/vnd.easynoty.notification-event+json" },
+        "content_encoding": { "$ref": "common.schema.json#/$defs/compression" },
+        "canonical_size": { "type": "integer", "minimum": 1 },
+        "encoded_size": { "type": "integer", "minimum": 1 },
+        "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "chunk_size": { "type": "integer", "minimum": 1, "maximum": 65536 },
+        "chunk_count": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "chunk": {
+      "type": "object", "additionalProperties": false,
+      "required": ["transfer_id", "chunk_index", "offset", "data_b64"],
+      "properties": {
+        "transfer_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "chunk_index": { "type": "integer", "minimum": 0 },
+        "offset": { "type": "integer", "minimum": 0 },
+        "data_b64": { "$ref": "common.schema.json#/$defs/base64" }
+      }
+    },
+    "complete": {
+      "type": "object", "additionalProperties": false,
+      "required": ["transfer_id", "event_id", "encoded_size", "canonical_sha256"],
+      "properties": {
+        "transfer_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "event_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "encoded_size": { "type": "integer", "minimum": 1 },
+        "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+      }
+    }
+  }
+}

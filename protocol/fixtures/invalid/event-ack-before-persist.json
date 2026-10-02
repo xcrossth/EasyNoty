@@ -1,0 +1,15 @@
+{
+  "protocol_version": 1,
+  "message_id": "20000000-0000-4000-8000-000000000015",
+  "message_type": "event_ack",
+  "device_id": "11111111-1111-4111-8111-111111111111",
+  "sent_at_utc": "2026-07-05T06:10:02Z",
+  "session_id": "55555555-5555-4555-8555-555555555555",
+  "payload": {
+    "event_id": "66666666-6666-4666-8666-666666666666",
+    "status": "received_not_persisted",
+    "persisted_at_utc": "2026-07-05T06:10:02Z",
+    "duplicate": false
+  },
+  "authentication": null
+}

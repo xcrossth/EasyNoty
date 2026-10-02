@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">EasyNoty</string>
+    <string name="notification_listener_label">EasyNoty notification access</string>
+    <string name="realtime_channel">Realtime sync</string>
+    <string name="realtime_running">EasyNoty realtime sync is active</string>
+    <string name="home_title">Status</string>
+    <string name="allowlist_title">Allowed apps</string>
+    <string name="pair_title">Pair Windows PC</string>
+    <string name="settings_title">Sync settings</string>
+    <string name="notification_access_on">Notification access enabled</string>
+    <string name="notification_access_off">Notification access is required</string>
+    <string name="open_notification_access">Open notification access</string>
+    <string name="privacy_notice">Only notifications from apps you allow are sent to paired Windows PCs on your LAN. EasyNoty does not use a cloud service.</string>
+    <string name="pairing_hint">Paste or scan the pairing QR payload</string>
+    <string name="pair">Validate and pair</string>
+    <string name="no_pcs">No Windows PCs paired</string>
+    <string name="pending_summary">%1$d notifications and %2$d assets pending</string>
+</resources>

@@ -1,0 +1,20 @@
+{
+  "protocol_version": 1,
+  "message_id": "20000000-0000-4000-8000-000000000005",
+  "message_type": "event_transfer_chunk",
+  "device_id": "22222222-2222-4222-8222-222222222222",
+  "sent_at_utc": "2026-07-05T06:11:01Z",
+  "session_id": "55555555-5555-4555-8555-555555555555",
+  "payload": {
+    "transfer_id": "88888888-8888-4888-8888-888888888888",
+    "chunk_index": 0,
+    "offset": 0,
+    "data_b64": "SGVsbG8="
+  },
+  "authentication": {
+    "algorithm": "hmac-sha256",
+    "key_id": "44444444-4444-4444-8444-444444444444",
+    "payload_sha256": "sha256:db23dd36ef6308f36e2807abbef9ee98afb5705ad8875968a3f93bd143841615",
+    "signature": "57add901df766ec4ca290a4aae116c5a9c1c87a8d7babfa24e891ae2c2888320"
+  }
+}

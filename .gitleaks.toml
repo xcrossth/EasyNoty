@@ -1,0 +1,22 @@
+title = "EasyNoty public repository"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Reviewed synthetic pairing token: repeated hexadecimal alphabet in exact test files only"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = [
+  '''(?:^|/)protocol/fixtures/valid/pairing-(?:qr|request)\.json$''',
+  '''(?:^|/)protocol/fixtures/invalid/pairing-(?:qr-bad-fingerprint|request-extra-secret)\.json$''',
+  '''(?:^|/)android/app/src/test/java/app/easynoty/android/pairing/PairingPayloadParserTest\.kt$''',
+]
+regexes = ['''^0123456789abcdef0123456789abcdef$''']
+
+[[allowlists]]
+description = "Normative HMAC test vector: base64url encoding of bytes 0 through 31"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(?:^|/)protocol/vectors/hmac-sha256\.json$''']
+regexes = ['''^AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8$''']

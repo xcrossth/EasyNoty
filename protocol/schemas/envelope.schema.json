@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://easynoty.app/protocol/v1/schemas/envelope.schema.json",
+  "title": "EasyNoty Protocol v1 message envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_version", "message_id", "message_type", "device_id", "sent_at_utc", "session_id", "payload", "authentication"],
+  "properties": {
+    "protocol_version": { "const": 1 },
+    "message_id": { "$ref": "common.schema.json#/$defs/uuid" },
+    "message_type": {
+      "enum": [
+        "hello", "pairing_request", "pairing_accept", "pairing_reject",
+        "auth_challenge", "auth_response", "auth_success",
+        "notification_event", "event_transfer_start", "event_transfer_chunk", "event_transfer_complete", "event_ack",
+        "asset_missing_request", "asset_transfer_start", "asset_transfer_chunk", "asset_transfer_complete", "asset_ack",
+        "ping", "pong", "error"
+      ]
+    },
+    "device_id": { "$ref": "common.schema.json#/$defs/uuid" },
+    "sent_at_utc": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "session_id": { "oneOf": [{ "$ref": "common.schema.json#/$defs/uuid" }, { "type": "null" }] },
+    "payload": { "type": "object" },
+    "authentication": { "oneOf": [{ "$ref": "common.schema.json#/$defs/authentication" }, { "type": "null" }] }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "protocol_version": 1,
+  "message_id": "20000000-0000-4000-8000-000000000008",
+  "message_type": "error",
+  "device_id": "11111111-1111-4111-8111-111111111111",
+  "sent_at_utc": "2026-07-05T06:13:00Z",
+  "session_id": "55555555-5555-4555-8555-555555555555",
+  "payload": {
+    "code": "hash_mismatch",
+    "message": "Canonical asset hash did not match.",
+    "retryable": true,
+    "related_message_id": "20000000-0000-4000-8000-000000000006",
+    "details": { "asset_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" }
+  },
+  "authentication": {
+    "algorithm": "hmac-sha256",
+    "key_id": "44444444-4444-4444-8444-444444444444",
+    "payload_sha256": "sha256:27537dea06c312d481bcf947bc4a98476600c2a91ee9e4cb5bc421448bb73abb",
+    "signature": "6486f0e4c64c786f8e2e290042aab67e77d9ab9b527ba53ed64d29210ec21f50"
+  }
+}

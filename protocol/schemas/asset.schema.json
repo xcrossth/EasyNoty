@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://easynoty.app/protocol/v1/schemas/asset.schema.json",
+  "title": "EasyNoty Protocol v1 asset payloads",
+  "$defs": {
+    "missingRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["event_id", "hashes"],
+      "properties": {
+        "event_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "hashes": { "type": "array", "minItems": 1, "maxItems": 64, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/sha256" } }
+      }
+    },
+    "start": {
+      "type": "object", "additionalProperties": false,
+      "required": ["transfer_id", "asset_hash", "mime", "content_encoding", "canonical_size", "encoded_size", "chunk_size", "chunk_count", "inline_data_b64"],
+      "properties": {
+        "transfer_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "asset_hash": { "$ref": "common.schema.json#/$defs/sha256" },
+        "mime": { "type": "string", "pattern": "^[a-z0-9][a-z0-9!#$&^_.+-]*/[a-z0-9][a-z0-9!#$&^_.+-]*$", "maxLength": 127 },
+        "content_encoding": { "$ref": "common.schema.json#/$defs/compression" },
+        "canonical_size": { "type": "integer", "minimum": 1, "maximum": 26214400 },
+        "encoded_size": { "type": "integer", "minimum": 1, "maximum": 26214400 },
+        "chunk_size": { "type": "integer", "minimum": 0, "maximum": 65536 },
+        "chunk_count": { "type": "integer", "minimum": 0, "maximum": 400 },
+        "inline_data_b64": { "oneOf": [{ "$ref": "common.schema.json#/$defs/base64" }, { "type": "null" }] }
+      }
+    },
+    "chunk": {
+      "type": "object", "additionalProperties": false,
+      "required": ["transfer_id", "chunk_index", "offset", "data_b64"],
+      "properties": {
+        "transfer_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "chunk_index": { "type": "integer", "minimum": 0, "maximum": 399 },
+        "offset": { "type": "integer", "minimum": 0 },
+        "data_b64": { "$ref": "common.schema.json#/$defs/base64" }
+      }
+    },
+    "complete": {
+      "type": "object", "additionalProperties": false,
+      "required": ["transfer_id", "asset_hash", "encoded_size"],
+      "properties": {
+        "transfer_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "asset_hash": { "$ref": "common.schema.json#/$defs/sha256" },
+        "encoded_size": { "type": "integer", "minimum": 1, "maximum": 26214400 }
+      }
+    }
+  }
+}

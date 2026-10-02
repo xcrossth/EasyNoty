@@ -1,0 +1,55 @@
+<Window
+    x:Class="EasyNoty.Desktop.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="EasyNoty">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <CommandBar x:Name="TopCommandBar" Grid.Row="0" DefaultLabelPosition="Right">
+            <CommandBar.Content>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <ComboBox x:Name="ViewSelector" Width="130" SelectedIndex="0" SelectionChanged="ViewSelector_Changed">
+                        <ComboBoxItem Content="Inbox"/><ComboBoxItem Content="Archived"/><ComboBoxItem Content="All"/>
+                    </ComboBox>
+                    <AutoSuggestBox x:Name="SearchBox" Width="260" PlaceholderText="Search notifications" QuerySubmitted="Search_Submitted"/>
+                </StackPanel>
+            </CommandBar.Content>
+            <AppBarButton Icon="Refresh" Label="Refresh" Click="Refresh_Click"/>
+            <AppBarButton Icon="Add" Label="Pair device" Click="Pair_Click"/>
+        </CommandBar>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="220"/><ColumnDefinition Width="2*"/><ColumnDefinition Width="3*"/></Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Padding="12" Spacing="8">
+                <TextBlock Text="Devices" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                <ListView x:Name="DeviceFilters" SelectionMode="Multiple" SelectionChanged="Filters_Changed"/>
+                <TextBlock Text="Apps" Margin="0,16,0,0" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                <ListView x:Name="AppFilters" SelectionMode="Multiple" SelectionChanged="Filters_Changed"/>
+            </StackPanel>
+            <ListView x:Name="InboxList" Grid.Column="1" SelectionChanged="InboxList_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Padding="8" Spacing="3">
+                            <TextBlock Text="{Binding Header}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding Preview}" TextWrapping="Wrap" MaxLines="2"/>
+                            <TextBlock Text="{Binding Metadata}" Opacity="0.65" FontSize="12"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ScrollViewer Grid.Column="2" Padding="20">
+                <StackPanel Spacing="12">
+                    <TextBlock x:Name="DetailTitle" Text="Select a notification" Style="{ThemeResource TitleTextBlockStyle}"/>
+                    <TextBlock x:Name="DetailBody" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Reveal" Click="Reveal_Click"/><Button Content="Mark read" Click="Read_Click"/><Button Content="Archive" Click="Archive_Click"/><Button Content="Delete" Click="Delete_Click"/>
+                    </StackPanel>
+                    <TextBlock Text="Settings" Margin="0,24,0,0" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                    <ToggleSwitch x:Name="StartupToggle" Header="Launch on startup" Toggled="StartupToggle_Toggled"/>
+                    <TextBlock x:Name="StorageText" TextWrapping="Wrap"/>
+                    <TextBlock Text="Lock-screen previews are redacted. Keep Windows notification content disabled on the lock screen." TextWrapping="Wrap"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <InfoBar x:Name="StatusBar" Grid.Row="2" IsOpen="True" IsClosable="False" Severity="Informational" Title="Receiver ready"/>
+    </Grid>
+</Window>

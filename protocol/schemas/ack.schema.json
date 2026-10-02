@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://easynoty.app/protocol/v1/schemas/ack.schema.json",
+  "title": "EasyNoty Protocol v1 acknowledgement payloads",
+  "$defs": {
+    "event": {
+      "type": "object", "additionalProperties": false,
+      "required": ["event_id", "status", "persisted_at_utc", "duplicate"],
+      "properties": {
+        "event_id": { "$ref": "common.schema.json#/$defs/uuid" },
+        "status": { "const": "persisted" },
+        "persisted_at_utc": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+        "duplicate": { "type": "boolean" }
+      }
+    },
+    "asset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["asset_hash", "status", "verified_at_utc", "duplicate"],
+      "properties": {
+        "asset_hash": { "$ref": "common.schema.json#/$defs/sha256" },
+        "status": { "const": "stored_verified" },
+        "verified_at_utc": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+        "duplicate": { "type": "boolean" }
+      }
+    }
+  }
+}

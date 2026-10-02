@@ -1,0 +1,16 @@
+{
+  "protocol_version": 1,
+  "message_id": "20000000-0000-4000-8000-000000000001",
+  "message_type": "pairing_request",
+  "device_id": "22222222-2222-4222-8222-222222222222",
+  "sent_at_utc": "2026-07-05T06:00:30Z",
+  "session_id": null,
+  "payload": {
+    "pairing_token": "0123456789abcdef0123456789abcdef",
+    "android_device_id": "22222222-2222-4222-8222-222222222222",
+    "android_name": "Pixel 9",
+    "client_nonce": "YWJjZGVmZ2hpamtsbW5vcA",
+    "capabilities": ["zstd", "zlib", "event_chunking", "asset_chunking"]
+  },
+  "authentication": null
+}
